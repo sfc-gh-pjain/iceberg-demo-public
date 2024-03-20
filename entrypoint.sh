@@ -20,6 +20,7 @@
 
 start-master.sh -p 7077
 start-worker.sh spark://spark-iceberg:7077
+mkdir -p /tmp/spark-events
 start-history-server.sh
 start-thriftserver.sh  --driver-java-options "-Dderby.system.home=/tmp/derby"
 

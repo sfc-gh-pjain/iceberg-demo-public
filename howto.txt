@@ -1,0 +1,4 @@
+sudo docker build --platform linux/amd64 -t spark_az .
+sudo docker images
+sudo docker container ls
+sudo docker exec -it <contName> bash

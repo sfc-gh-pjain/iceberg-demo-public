@@ -94,11 +94,11 @@ RUN sudo apt-get install git
 
 RUN mkdir -p /home/iceberg/data \
  && curl -k https://data.cityofnewyork.us/resource/tg4x-b46p.json > /home/iceberg/data/nyc_film_permits.json \
- && curl -k https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2022-04.parquet -o /home/iceberg/data/yellow_tripdata_2022-04.parquet \
- && curl -k https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2022-03.parquet -o /home/iceberg/data/yellow_tripdata_2022-03.parquet 
+ && curl -k https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-04.parquet -o /home/iceberg/data/yellow_tripdata_2022-04.parquet \
+ && curl -k https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-05.parquet -o /home/iceberg/data/yellow_tripdata_2022-03.parquet 
 
 
-RUN mkdir -p /home/iceberg/localwarehouse /home/iceberg/notebooks /home/iceberg/spark-events 
+RUN mkdir -p /home/iceberg/notebooks /home/iceberg/spark-events 
 COPY notebooks/ /home/iceberg/notebooks
 
 
@@ -127,6 +127,7 @@ RUN chmod u+x /opt/spark/sbin/* && \
     chmod u+x /opt/spark/bin/*
 
 COPY entrypoint.sh .
+COPY fusemount.sh .
 
 ENTRYPOINT ["./entrypoint.sh"]
 CMD ["notebook"]
